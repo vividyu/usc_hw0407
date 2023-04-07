@@ -1,4 +1,12 @@
-Requirements
+## Usage
+```
+npm i
+npm install redux react-redux
+npm start
+```
+browse http://localhost:3000/
+
+## Requirements
 Your task is to implement a time tracker for tasks, using React and Redux.
 
 The time tracker should consist of two components connected to redux:
