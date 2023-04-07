@@ -1,7 +1,9 @@
 ## Usage
 ```
 npm i
-npm install redux react-redux
+
+npm install --save redux react-redux
+
 npm start
 ```
 browse http://localhost:3000/
