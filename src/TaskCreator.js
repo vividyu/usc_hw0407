@@ -37,8 +37,10 @@ const TaskCreator = () => {
   };
 
   return (
-    <div>
+    <div className="taskCreator">
+      <span>Task Name</span>
       <input id="taskName" value={taskName} onChange={(e) => setTaskName(e.target.value)} />
+      <span>Time Elapsed</span>
       <input
         id="timeField"
         type="number"

@@ -19,13 +19,13 @@ const TasksList = () => {
   const sortedTasks = groupedTasks.sort((a, b) => b.id - a.id);
 
   return (
-    <div>
+    <div className='tasksList'>
       <ul id="tasks">
-        {sortedTasks.map((task) => (
+        {sortedTasks.map((task, index) => (
           <li key={task.id} className="task">
-            <span className="id">{task.id}</span>
-            <span className="name">{task.name}</span>
-            <span className="time">{task.time}</span>
+            <span className="id">{index + 1}</span>
+            <span className=" name">{task.name}</span>
+            <span className=" time">{task.time}</span>
           </li>
         ))}
       </ul>
