@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+Requirements
+Your task is to implement a time tracker for tasks, using React and Redux.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The time tracker should consist of two components connected to redux:
 
-## Available Scripts
+Component for adding new tasks (TaskCreator)
+Elements:
 
-In the project directory, you can run:
+Input field for task name – with ID taskName
+Input field for time elapsed (in seconds) – with ID timeField
+Start button – with ID start
+Stop button – with ID stop
+Behaviour:
 
-### `npm start`
+When user clicks start, the timer should start counting seconds elapsed.
+timeField should display seconds elapsed.
+When user clicks stop, the elapsed time, task name and ID should be saved to the redux store, and timeField should reset to 0:
+Task ID should auto-increment starting from 1;
+Saving to redux should be skipped if the elapsed time is equal to 0.
+When user focuses timeField the timer should pause.
+User should be able to change the elapsed time by typing into timeField.
+When user blurs timeField, the timer should resume.
+The component must be exported as default from TaskCreator.js (the name of the component doesn't matter).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Component for displaying tasks (TasksList)
+Elements:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+List of tracked tasks from redux store – with ID tasks:
 
-### `npm test`
+Each entry should be in the following format (remember about the class, as it is vital for the tests to pass):
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<li class="task">
+    <span class="id">Task ID</span>
+    <span class="name">Task Name</span>
+    <span class="time">Task Elapsed Time (number only)</span>
+</li>
+Total tracked time (number only) – with ID total.
 
-### `npm run build`
+Behaviour:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The list should display tasks with the same name as if they were a single task:
+time should be a sum of their times;
+ID should be the lowest ID of all matching tasks.
+The list should be sorted in descending order of task ID.
+The component must be exported as default from TasksList.js (the name of the component doesn't matter).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Assumptions
+An empty taskName field should be treated as a task with an empty string as its name, and therefore it shouldn't throw any errors.
+You can assume the user types only digits into timeField.
+The look of the components won't be evaluated; only their functionalities will be tested.
+In reducer.js, you must export default reducer function and export const initialState – your initial Redux state.
+Available tools/packages
+Use browser console for debugging
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+You are expected to use:
 
-### `npm run eject`
+React 16.13.1
+React-Redux 7.2.1
+Redux 4.0.5
+You may use
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Redux Toolkit 1.4.0
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Examples
+Tasks in store
+ID name time
+1 My Task 4
+2 my task 5
+3 My Task 12
+4 Another Task 3
+Displayed tasks
+ID name time
+1 My Task 16
+2 my task 5
+4 Another Task 3
+Total tracked time 24
